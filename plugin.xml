@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-decoder" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <name>SoniDecoder</name>
+
+    <js-module name="SoniDecoder" src="www/SoniDecoder.js">
+        <clobbers target="cordova.plugins.SoniDecoder"/>
+    </js-module>
+
+    <platform name="android">
+        <!--<framework src="src/android/extras.gradle" custom="true" type="gradleReference"/>-->
+
+        <framework src="com.android.support:appcompat-v7:28.0.0"/>
+        <framework src="com.android.support:support-v4:28.0.0"/>
+        <framework src="uk.me.berndporr:iirj:1.1"/>
+        <framework src="de.dfki.mary:marytts-signalproc:5.1.2"/>
+
+        <resource-file src="src/android/StringsFoo.xml" target="res/values/StringsFoo.xml"/>
+        <resource-file src="src/android/StylesFoo.xml" target="res/values/StylesFoo.xml" />
+
+        <config-file target="res/values/strings.xml" parent="/*">
+            <string name="permission_l0_description">exchange data over sound without asking</string>
+            <string name="permission_l0_label">Always allow data over sound</string>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/*" mode="merge">
+            <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+            <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+            <permission
+                    android:name="at.ac.fhstp.permission_all_ultrasonic_communication"
+                    android:label="@string/permission_l0_label"
+                    android:description="@string/permission_l0_description"
+                    android:permissionGroup="SoniTalk"
+                    android:protectionLevel="dangerous" />
+
+            <uses-permission android:name="at.ac.fhstp.permission_all_ultrasonic_communication"/>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity android:name="cordova.plugin.decoder.PermissionLevelDialogActivity" android:launchMode="singleTask" android:theme="@style/Theme.AppCompat.Translucent" android:excludeFromRecents="true"></activity>
+            <activity android:name="cordova.plugin.decoder.PermissionRequestDialogActivity" android:launchMode="singleTask" android:theme="@style/Theme.AppCompat.Translucent" android:excludeFromRecents="true"></activity>
+        </config-file>
+
+        <!--<config-file parent="/*" target="res/xml/config.xml">
+            <feature name="SoniTalkDecoder">
+                <param name="android-package" value="cordova.plugin.decoder.SoniTalkDecoder"/>
+            </feature>
+        </config-file>-->
+
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="SoniDecoder">
+                <param name="android-package" value="cordova.plugin.decoder.SoniDecoder"/>
+            </feature>
+        </config-file>
+
+        <lib-file src="src/android/lib/JTransforms-2.4.jar"/>
+        <lib-file src="src/android/lib/emory-util-io-2.1.jar"/>
+        <lib-file src="src/android/lib/emory-util-concurrent-2.1.jar"/>
+
+        <source-file src="src/android/SoniDecoder.java" target-dir="src/cordova/plugin/decoder"/>
+
+        <source-file src="src/android/CRC.java" target-dir="src/cordova/plugin/decoder"/>
+        <source-file src="src/android/DecoderUtils.java" target-dir="src/cordova/plugin/decoder"/>
+        <source-file src="src/android/CircularArray.java" target-dir="src/cordova/plugin/decoder"/>
+        <source-file src="src/android/ConfigFactory.java" target-dir="src/cordova/plugin/decoder"/>
+        <source-file src="src/android/HammingWindow.java" target-dir="src/cordova/plugin/decoder"/>
+        <source-file src="src/android/SoniTalkConfig.java" target-dir="src/cordova/plugin/decoder"/>
+        <source-file src="src/android/WindowFunction.java" target-dir="src/cordova/plugin/decoder"/>
+        <source-file src="src/android/SoniTalkContext.java" target-dir="src/cordova/plugin/decoder"/>
+        <source-file src="src/android/SoniTalkDecoder.java" target-dir="src/cordova/plugin/decoder"/>
+        <source-file src="src/android/ConfigConstants.java" target-dir="src/cordova/plugin/decoder"/>
+        <source-file src="src/android/ConfigException.java" target-dir="src/cordova/plugin/decoder"/>
+        <source-file src="src/android/SoniTalkMessage.java" target-dir="src/cordova/plugin/decoder"/>
+        <source-file src="src/android/SoniTalkException.java" target-dir="src/cordova/plugin/decoder"/>
+        <source-file src="src/android/DecoderStateException.java" target-dir="src/cordova/plugin/decoder"/>
+        <source-file src="src/android/SoniTalkPermissionManager.java" target-dir="src/cordova/plugin/decoder"/>
+        <source-file src="src/android/PermissionLevelDialogActivity.java" target-dir="src/cordova/plugin/decoder"/>
+        <source-file src="src/android/PermissionRequestDialogActivity.java" target-dir="src/cordova/plugin/decoder"/>
+        <source-file src="src/android/SoniTalkPermissionsResultReceiver.java" target-dir="src/cordova/plugin/decoder"/>
+
+
+        <!--<edit-config file="AndroidManifest.xml" target="/manifest/application/activity[@android:label='PermissionRequestDialogActivity']" mode="merge">-->
+            <!--<activity android:theme="@android:@style/Theme.AppCompat.Translucent" android:launchMode="singleTask" android:excludeFromRecents="true"/>-->
+        <!--</edit-config>-->
+
+        <!--<edit-config file="AndroidManifest.xml" target="/manifest/application/activity[@android:label='PermissionLevelDialogActivity']" mode="merge">-->
+            <!--<activity android:theme="@android:@style/Theme.AppCompat.Translucent" android:launchMode="singleTask" android:excludeFromRecents="true"/>-->
+        <!--</edit-config>-->
+    </platform>
+</plugin>

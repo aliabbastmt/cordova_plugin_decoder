@@ -1,0 +1,19 @@
+{
+  "name": "cordova-plugin-decoder",
+  "version": "1.0.0",
+  "description": "Decodes ultrasonic sound waves to UTF-8 ASCII text.",
+  "cordova": {
+    "id": "cordova-plugin-decoder",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "decoder",
+    "ultrasonic",
+    "cordova decoder",
+    "ultrasonic decoder"
+  ],
+  "author": "",
+  "license": "ISC"
+}

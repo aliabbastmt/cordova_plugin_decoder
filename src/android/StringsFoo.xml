@@ -1,0 +1,112 @@
+<resources>
+    <string name="permissionRequestExplanation">Microphone permission is needed to receive messages via sound.</string>
+    <string name="l0permissionRequestExplanation">Data-over-sound permission is needed to send/receive messages via sound.</string>
+    <string-array name="numberOfFrequenciesVisible">
+        <item>8 Frequencies</item>
+        <item>16 Frequencies</item>
+        <item>24 Frequencies</item>
+        <item>32 Frequencies</item>
+        <item>40 Frequencies</item>
+        <item>48 Frequencies</item>
+    </string-array>
+    <string-array name="numberOfFrequencies">
+        <item>8</item>
+        <item>16</item>
+        <item>24</item>
+        <item>32</item>
+        <item>40</item>
+        <item>48</item>
+    </string-array>
+    <string name="action_reset_settings_message">Do you want to reset all settings?</string>
+    <string name="action_reset_settings_title">Reset Settings</string>
+    <string name="signal_generator_not_created">No Signal was created yet!</string>
+    <string name="encoder_exception_text_too_long">The text is too long! Maximum message length (%d bytes)</string>
+    <string name="encoder_exception_text_too_many_bytes">The text is too long! Emojis and non ASCII characters take several bytes. Maximum message length (%d bytes)</string>
+    <string name="decoder_exception_state">Failed to start listening, error message :</string>
+    <string name="decoder_exception_io">Failed to start listening due to an error on loading the default detection profile, details:</string>
+    <string name="decoder_exception_config">Failed to start listening due to an error on loading the default detection profile, details:</string>
+    <string name="permission_request_explanation_positive">Open the Permission Menu</string>
+    <string name="permission_request_explanation_negative">No thanks</string>
+    <string name="detection_crc_incorrect">CRC checksum incorrect. Please try again.</string>
+    <string name="detection_crc_incorrect_keep_listening">CRC checksum incorrect. Keep listening. Please try again</string>
+    <string name="detection_crc_incorrect_toast_message">Detected a message, but CRC checksum is incorrect.</string>
+    <string name="detection_crc_incorrect_keep_listening_toast_message">Detected a message, but CRC checksum is incorrect. Keep listening.</string>
+    <string name="on_receiving_listening_permission_required">Data-over-sound permission required to receive messages</string>
+    <string name="on_sending_sending_permission_required">Data-over-sound permission required to send messages</string>
+    <string name="decoder_start_text">Start listening...</string>
+    <string name="settings_bitperiod_text">Bit period (%s ms)</string>
+    <string name="settings_pauseperiod_text">Pause period (%s ms)</string>
+    <string name="settings_frequency0_text">Base frequency (%s Hz)</string>
+    <string name="settings_frequencyspace_text">Frequency space (%s Hz)</string>
+    <string name="settings_maxbytes_text">Maximum message length (%s bytes)</string>
+    <string name="settings_numberoffrequencies_text">Number of frequencies (%s)</string>
+    <string name="settings_numberoffrequencies_text_dialog">Number of frequencies</string>
+    <string name="settings_loudness_text">Volume (%s)</string>
+    <string name="settings_reset_title">Reset settings</string>
+    <string name="settings_preset_title">Preset (%s)</string>
+    <string name="gui_message_title">Preset configuration (%s)</string>
+    <string name="section_name_sending">Send</string>
+    <string name="section_name_receiving">Receive</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_about_us">About us</string>
+    <string name="menu_instructions">Developers</string>
+    <string name="menu_privacy_policy">Privacy policy</string>
+    <string name="menu_help">Help</string>
+    <string name="preset_undefined">undefined</string>
+    <string name="settings_configuration_alert_title">Select configuration preset</string>
+    <string name="about_us_text">Ultrasonic communication (UC) is increasingly used for data exchange between mobile phones and other devices, as well as for location-based services. UC is attractive because it is inaudible and very low-threshold in terms of the hardware required (only microphone and speaker required). Today, there exist several proprietary solutions for UC on the market, which are developed by companies in a closed source form, which raises questions regarding the protection of users\' privacy, since it is not clear which data is actually sent, when and to whom.
+        \n\nSoniTalk is a novel open and transparent protocol for ultrasonic communication between devices such as smartphones, TVs, and IoT devices. Thereby SoniTalk gives the user full control over her privacy by a fine grained permission system.
+        \n\nThe project SoniTalk has been financially supported by the funding program netidee (http://www.netidee.at) and has been developed in a research project at the Institute for Creative Media Technologies at the University of Applied Sciences Sankt Pölten (http://sonitalk.fhstp.ac.at).
+        \n\nThe project was pursued by Matthias Zeppelzauer, Alexis Ringot and Florian Taurer at the Media Computing Group of the University of Applied Sciences in St. Pölten. In the future, SoniTalk could benefit various industries as well as end consumers with new communication possibilities.
+        \n\nIn case of questions, bugs, ideas, please contact us directly under http://sonitalk.fhstp.ac.at/#contact.</string>
+    <string name="instructions_title">Instruction</string>
+    <string name="instructions_text">Welcome to the SoniTalk Demo app.
+        \n\nThis app demonstrates the use of the SoniTalk protocol for communication over sound. The default setting uses (near) ultrasonic frequencies.
+        \n\nYou can type in a message and send it by tapping on the button next to the text.
+        \n\nTo receive a message, you only need to tap on the ear button. Received messages will be shown next to it. If a message was detected but could not be decoded, you will see the following message: (%s)
+        \nYou can try to receive the message again and/or change settings. Please make sure that the device sending and the device receiving use the same configuration.
+        \n\nThe SoniTalk Demo app needs access to the microphone for receiving messages and the custom data-over-sound permission to send and receive messages.
+        \n\nWe do not transmit any data from your phone (apart from the text you decide to send) and do not store any privacy-sensitive data.</string>
+    <string name="creditsText">Credits \n\n Iirj (https://github.com/berndporr/iirj/)\n\n JTransforms, Utilities (https://mvnrepository.com/artifact/edu.emory.mathcs/)\n\n MaryTTS (https://github.com/marytts/marytts/)\n\nHamming Window by Benjamin Elliott (https://github.com/benelliott/spectrogram-android)\n\nMaterial Icons and the Apache Commons Library are used, which are under the license of Apache License Version 2.0 (https://www.apache.org/licenses/LICENSE-2.0.txt )</string>
+    <string name="show_toast_no_characters_entered">Please enter a value!</string>
+    <string name="show_toast_no_numeric_character_entered">Please enter only numeric values!</string>
+    <string name="show_toast_lower_limit_exceeded">Please enter a value above the limit of %d!</string>
+    <string name="show_toast_higher_limit_exceeded">Please enter a value below the limit of %d!</string>
+    <string name="receive_button">Receive button</string>
+    <string name="send_button">Send button</string>
+    <string name="edtSignalText_hint">Text to send</string>
+    <string name="context_preference_key" translatable="false">at.ac.fhstp.sonitalk.context_preference_key_</string>
+    <string name="permission_level_key" translatable="false">PERMISSION_LEVEL</string>
+    <string name="bundleRequestCode_key" translatable="false">BUNDLE_REQUEST_CODE_KEY</string>
+    <string name="currentRequestAction_key" translatable="false">CURRENT_REQUEST_ACTION</string>
+    <string name="currentRequestGranted_key" translatable="false">CURRENT_REQUEST_GRANTED</string>
+    <string name="currentRequestAnswered_key" translatable="false">CURRENT_REQUEST_ANSWERED</string>
+    <string name="permissionLevelWasSet_key" translatable="false">PERMISSION_LEVEL_WAS_SET</string>
+    <string name="permissionLevelWasAnswered_key" translatable="false">PERMISSION_LEVEL_WAS_ANSWERED</string>
+    <string name="statusChannelName">Data-over-sound Status Channel</string>
+    <string name="defaultStatusNotificationTitle" translatable="false">Data over sound</string>
+    <string name="defaultStatusNotificationMessage">Ready to start communicating</string>
+    <string name="sendingStatusNotificationTitle" translatable="false">Data over sound</string>
+    <string name="sendingStatusNotificationMessage">Currently sending...</string>
+    <string name="receivingStatusNotificationTitle" translatable="false">Data over sound</string>
+    <string name="receivingStatusNotificationMessage">Currently receiving...</string>
+    <string name="sendingAndReceivingStatusNotificationTitle" translatable="false">Data over sound</string>
+    <string name="sendingAndReceivingStatusNotificationMessage">Currently sending and Receiving...</string>
+    <string name="l2_permission_level_text">Strict - Ask on each communication request</string>
+    <string name="l1_permission_level_text">Moderate - Allow until next start of app</string>
+    <string name="l0_permission_level_text">Low - Allow always</string>
+    <string name="decline_permission_level_text">Decline</string>
+    <string name="permission_level_question">Choose data-over-sound privacy setting for %s app:</string>
+    <string name="permission_request_l1_question">Allow %s to send/receive data via sound ? (until next start of the app)</string>
+    <string name="permission_request_l2_question">Allow %s to send/receive data via sound ? (just this time)</string>
+    <string name="permission_request_positive_text">Allow</string>
+    <string name="permission_request_negative_text">Deny</string>
+    <string name="permission_request_title">Allow data over sound ?</string>
+    <string name="permission_request_change_text">Settings</string>
+    <string-array name="permission_level_texts">
+        <item>@string/l0_permission_level_text</item>
+        <item>@string/l1_permission_level_text</item>
+        <item>@string/l2_permission_level_text</item>
+        <item>@string/decline_permission_level_text</item>
+    </string-array>
+</resources>
