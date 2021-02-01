@@ -35,6 +35,8 @@ import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
  */
 public class SoniDecoder extends CordovaPlugin implements SoniTalkDecoder.MessageListener, SoniTalkPermissionsResultReceiver.Receiver {
 
+    private static final String PERMISSION_SONITALK_L0 = "at.ac.fhstp.permission_all_ultrasonic_communication";
+
     private static final String TAG = "cordova-plugin-decoder";
 
     private SoniTalkContext soniTalkContext;
@@ -80,7 +82,60 @@ public class SoniDecoder extends CordovaPlugin implements SoniTalkDecoder.Messag
             result.setKeepCallback(true);*/
             return true;
         }
+
+        if (action.equals("check_microphone_permission")) {
+            this.message = args.getString(0);
+            this.callbackContext = callbackContext;
+            cordova.getActivity().runOnUiThread(new Runnable() {
+                public void run() {
+                    checkMicrophonePermission();
+                }
+            });
+            return true;
+        }
+
+        if (action.equals("check_special_permission")) {
+            this.message = args.getString(0);
+            this.callbackContext = callbackContext;
+            cordova.getActivity().runOnUiThread(new Runnable() {
+                public void run() {
+                    checkSpecialPermission();
+                }
+            });
+            return true;
+        }
         return false;
+    }
+
+    private boolean checkMicrophonePermission() {
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            sendData("false");
+            return false;
+        } else {
+            sendData("true");
+            return true;
+        }
+    }
+
+    private boolean checkSpecialPermission() {
+        if (hasPermissions(getApplicationContext(), PERMISSION_SONITALK_L0)) {
+            sendData("true");
+            return true;
+        } else {
+            sendData("false");
+            return false;
+        }
+    }
+
+    private static boolean hasPermissions(@NonNull Context context, @NonNull String... permissions) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M/* Wasn't this a security issue ?! && context != null && permissions != null*/) {
+            for (String permission : permissions) {
+                if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     private void onDecodeStart(String message, CallbackContext callbackContext) {
