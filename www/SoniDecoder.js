@@ -4,11 +4,10 @@ exports.decode = function (arg0, success, error) {
     exec(success, error, 'SoniDecoder', 'decode', [arg0]);
 };
 
-exports.decode = function (arg0, success, error) {
-    exec(success, error, 'SoniDecoder', 'check_microphone_permission', [arg0]);
+exports.check_microphone_permission = function (success, error) {
+    exec(success, error, 'SoniDecoder', 'check_microphone_permission');
 };
 
-
-exports.decode = function (arg0, success, error) {
-    exec(success, error, 'SoniDecoder', 'check_special_permission', [arg0]);
+exports.check_special_permission = function (success, error) {
+    exec(success, error, 'SoniDecoder', 'check_special_permission');
 };

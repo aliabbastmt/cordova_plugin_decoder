@@ -84,7 +84,6 @@ public class SoniDecoder extends CordovaPlugin implements SoniTalkDecoder.Messag
         }
 
         if (action.equals("check_microphone_permission")) {
-            this.message = args.getString(0);
             this.callbackContext = callbackContext;
             cordova.getActivity().runOnUiThread(new Runnable() {
                 public void run() {
@@ -95,7 +94,6 @@ public class SoniDecoder extends CordovaPlugin implements SoniTalkDecoder.Messag
         }
 
         if (action.equals("check_special_permission")) {
-            this.message = args.getString(0);
             this.callbackContext = callbackContext;
             cordova.getActivity().runOnUiThread(new Runnable() {
                 public void run() {
@@ -198,7 +196,13 @@ public class SoniDecoder extends CordovaPlugin implements SoniTalkDecoder.Messag
             final String decodedText = DecoderUtils.byteToUTF8(receivedMessage.getMessage());
 //            Log.e(TAG, decodedText);
 
-            sendData(decodedText);
+            String myConvertedText = decodedText
+                    .replaceAll("#h:", "http://")
+                    .replaceAll("#hs:", "https://")
+                    .replaceAll("\\n","\n")
+					.replaceAll("\\\\n", "\n")
+                    .replaceAll("#"," ");
+            sendData(myConvertedText);
 
 //            callbackContext.success(decodedText);
         }
