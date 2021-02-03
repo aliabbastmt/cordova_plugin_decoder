@@ -2,9 +2,10 @@ package cordova.plugin.decoder;
 
 import android.os.Build;
 import android.Manifest;
+import android.content.pm.PackageManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v4.app.ActivityCompat;
-import android.content.pm.PackageManager;
+import android.support.v4.content.ContextCompat;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
@@ -106,7 +107,7 @@ public class SoniDecoder extends CordovaPlugin implements SoniTalkDecoder.Messag
     }
 
     private boolean checkMicrophonePermission() {
-        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             sendData("false");
             return false;
         } else {
@@ -116,24 +117,13 @@ public class SoniDecoder extends CordovaPlugin implements SoniTalkDecoder.Messag
     }
 
     private boolean checkSpecialPermission() {
-        if (hasPermissions(getApplicationContext(), PERMISSION_SONITALK_L0)) {
+        if (hasPermissions(context, PERMISSION_SONITALK_L0)) {
             sendData("true");
             return true;
         } else {
             sendData("false");
             return false;
         }
-    }
-
-    private static boolean hasPermissions(@NonNull Context context, @NonNull String... permissions) {
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M/* Wasn't this a security issue ?! && context != null && permissions != null*/) {
-            for (String permission : permissions) {
-                if (ContextCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 
     private void onDecodeStart(String message, CallbackContext callbackContext) {
@@ -157,7 +147,7 @@ public class SoniDecoder extends CordovaPlugin implements SoniTalkDecoder.Messag
         int f0 = 18000;
         int nFrequencies = 16;
         int frequencySpace = 100;
-        int nMaxBytes = 18; //18*2-2=34
+        int nMaxBytes = 30; //18*2-2=34
 
         try {
             // Note: here for debugging purpose we allow to change almost all the settings of the protocol.
@@ -199,8 +189,9 @@ public class SoniDecoder extends CordovaPlugin implements SoniTalkDecoder.Messag
             String myConvertedText = decodedText
                     .replaceAll("#h:", "http://")
                     .replaceAll("#hs:", "https://")
-                    .replaceAll("\\n","\n")
-					.replaceAll("\\\\n", "\n")
+                    .replaceAll("\\\"", "\"")
+                    .replaceAll("\\\\n", "\n")
+                    .replaceAll("\\n", "\n")
                     .replaceAll("#"," ");
             sendData(myConvertedText);
 
