@@ -35,8 +35,8 @@ import android.support.v7.app.AppCompatActivity;
  */
 public class PermissionRequestDialogActivity extends AppCompatActivity {
     private static final String TAG_PermissionRequestDialogFragment = "TAG_PermissionRequestDialogFragment";
-    /*package-private*/static final String EXTRA_PERMISSION_REQUEST_LISTENER = "at.ac.fhstp.sonitalk.EXTRA_PERMISSION_REQUEST_LISTENER";
-    /*package-private*/static final String EXTRA_PERMISSION_LEVEL_CODE = "at.ac.fhstp.sonitalk.EXTRA_PERMISSION_LEVEL_CODE";
+    /*package-private*/static final String EXTRA_PERMISSION_REQUEST_LISTENER = "com.churchbase.ismchurch.EXTRA_PERMISSION_REQUEST_LISTENER";
+    /*package-private*/static final String EXTRA_PERMISSION_LEVEL_CODE = "com.churchbase.ismchurch.EXTRA_PERMISSION_LEVEL_CODE";
 
     private int permission_level_code;
 

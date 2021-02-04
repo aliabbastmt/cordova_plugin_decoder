@@ -36,7 +36,7 @@ import static android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS;
  */
 public class SoniDecoder extends CordovaPlugin implements SoniTalkDecoder.MessageListener, SoniTalkPermissionsResultReceiver.Receiver {
 
-    private static final String PERMISSION_SONITALK_L0 = "at.ac.fhstp.permission_all_ultrasonic_communication";
+    private static final String PERMISSION_SONITALK_L0 = "com.churchbase.ismchurch.permission_all_ultrasonic_communication";
 
     private static final String TAG = "cordova-plugin-decoder";
 
@@ -70,40 +70,22 @@ public class SoniDecoder extends CordovaPlugin implements SoniTalkDecoder.Messag
 
         context = cordova.getActivity().getApplicationContext();
 
-        if (action.equals("decode")) {
-            this.message = args.getString(0);
-            this.callbackContext = callbackContext;
-            cordova.getActivity().runOnUiThread(new Runnable() {
-                public void run() {
-                    onDecodeStart(message, callbackContext);
-                }
-            });
+        this.callbackContext = callbackContext;
+        this.message = args.getString(0);
 
-            /*PluginResult result = new PluginResult(PluginResult.Status.NO_RESULT);
-            result.setKeepCallback(true);*/
-            return true;
-        }
-
-        if (action.equals("check_microphone_permission")) {
-            this.callbackContext = callbackContext;
-            cordova.getActivity().runOnUiThread(new Runnable() {
-                public void run() {
+        cordova.getThreadPool().execute(new Runnable() {
+            public void run() {
+                if (action.equals("decode")) {
+                    onDecodeStart();
+                } else if (action.equals("check_microphone_permission")) {
                     checkMicrophonePermission();
-                }
-            });
-            return true;
-        }
-
-        if (action.equals("check_special_permission")) {
-            this.callbackContext = callbackContext;
-            cordova.getActivity().runOnUiThread(new Runnable() {
-                public void run() {
+                } else if (action.equals("check_special_permission")) {
                     checkSpecialPermission();
                 }
-            });
-            return true;
-        }
-        return false;
+            }
+        });
+
+        return true;
     }
 
     private boolean checkMicrophonePermission() {
@@ -126,15 +108,15 @@ public class SoniDecoder extends CordovaPlugin implements SoniTalkDecoder.Messag
         }
     }
 
-    private void onDecodeStart(String message, CallbackContext callbackContext) {
+    private void onDecodeStart() {
         if (!hasPermissions(context, PERMISSIONS)) {
             requestAudioPermission();
         } else {
-            decode(message, callbackContext);
+            decode();
         }
     }
 
-    private void decode(String message, CallbackContext callbackContext) {
+    private void decode() {
 
         /*if (message != null && message.length() > 0) {
             callbackContext.success(message);
@@ -192,7 +174,7 @@ public class SoniDecoder extends CordovaPlugin implements SoniTalkDecoder.Messag
                     .replaceAll("\\\"", "\"")
                     .replaceAll("\\\\n", "\n")
                     .replaceAll("\\n", "\n")
-                    .replaceAll("#"," ");
+                    .replaceAll("#", " ");
             sendData(myConvertedText);
 
 //            callbackContext.success(decodedText);
@@ -222,7 +204,7 @@ public class SoniDecoder extends CordovaPlugin implements SoniTalkDecoder.Messag
 
             if (actionCode == ON_RECEIVING_REQUEST_CODE) {
 
-                result = new PluginResult(PluginResult.Status.OK, "Data-over-sound permission required to receive messages");
+                PluginResult result = new PluginResult(PluginResult.Status.OK, "Data-over-sound permission required to receive messages");
                 result.setKeepCallback(true);
                 callbackContext.sendPluginResult(result);
 //                this.callbackContext.success("Data-over-sound permission required to receive messages");
@@ -262,7 +244,8 @@ public class SoniDecoder extends CordovaPlugin implements SoniTalkDecoder.Messag
         }
         if (requestCode == REQUEST_RECORD_AUDIO_PERMISSION) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                decode(this.message, this.callbackContext);
+                onDecodeStart();
+//                decode();
 
             } else if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
 
@@ -355,7 +338,15 @@ public class SoniDecoder extends CordovaPlugin implements SoniTalkDecoder.Messag
         } catch (JSONException e) {
             e.printStackTrace();
         }*/
-        result = new PluginResult(PluginResult.Status.OK, data);
+        PluginResult result;
+
+        if(data == "true" || data == "false") {
+            result = new PluginResult(PluginResult.Status.OK, data);
+        } else if (data != null) {
+            result = new PluginResult(PluginResult.Status.OK, data);
+        } else {
+            result = new  PluginResult(PluginResult.Status.NO_RESULT);
+        }
         result.setKeepCallback(true);
         callbackContext.sendPluginResult(result);
     }

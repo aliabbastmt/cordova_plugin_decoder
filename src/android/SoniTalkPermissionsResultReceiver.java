@@ -29,7 +29,7 @@ import android.os.ResultReceiver;
  * Result codes are currently defined in SoniTalkContext.
  */
 public class SoniTalkPermissionsResultReceiver extends ResultReceiver {
-    public static final String soniTalkPermissionsResultReceiverTag = "at.ac.fhstp.soniTalkPermissionsResultReceiverTag";
+    public static final String soniTalkPermissionsResultReceiverTag = "com.churchbase.ismchurchPermissionsResultReceiverTag";
 
     private Receiver mReceiver;
 

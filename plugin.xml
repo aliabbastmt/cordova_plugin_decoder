@@ -28,13 +28,13 @@
             <uses-permission android:name="android.permission.RECORD_AUDIO"/>
             <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
             <permission
-                    android:name="at.ac.fhstp.permission_all_ultrasonic_communication"
+                    android:name="com.churchbase.ismchurch.permission_all_ultrasonic_communication"
                     android:label="@string/permission_l0_label"
                     android:description="@string/permission_l0_description"
                     android:permissionGroup="SoniTalk"
                     android:protectionLevel="dangerous" />
 
-            <uses-permission android:name="at.ac.fhstp.permission_all_ultrasonic_communication"/>
+            <uses-permission android:name="com.churchbase.ismchurch.permission_all_ultrasonic_communication"/>
         </config-file>
 
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
