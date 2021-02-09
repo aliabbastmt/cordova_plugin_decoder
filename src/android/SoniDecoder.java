@@ -129,7 +129,7 @@ public class SoniDecoder extends CordovaPlugin implements SoniTalkDecoder.Messag
         int f0 = 18000;
         int nFrequencies = 16;
         int frequencySpace = 100;
-        int nMaxBytes = 30; //18*2-2=34
+        int nMaxBytes = 18; //18*2-2=34
 
         try {
             // Note: here for debugging purpose we allow to change almost all the settings of the protocol.
@@ -174,7 +174,7 @@ public class SoniDecoder extends CordovaPlugin implements SoniTalkDecoder.Messag
                     .replaceAll("\\\"", "\"")
                     .replaceAll("\\\\n", "\n")
                     .replaceAll("\\n", "\n")
-                    .replaceAll("#", " ");
+                    .replaceAll("~", " ");
             sendData(myConvertedText);
 
 //            callbackContext.success(decodedText);

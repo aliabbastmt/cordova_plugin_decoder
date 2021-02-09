@@ -50,7 +50,7 @@ public class ConfigConstants {
     public static final String SETTING_PAUSE_PERIOD_DEFAULT = "0";
     public static final String SETTING_NUMBER_OF_FREQUENCIES_DEFAULT = "16";
     public static final String SETTING_SPACE_BETWEEN_FREQUENCIES_DEFAULT = "100";
-    public static final String SETTING_NUMBER_OF_BYTES_DEFAULT = "30";
+    public static final String SETTING_NUMBER_OF_BYTES_DEFAULT = "18";
     public static final String SETTING_LOUDNESS_DEFAULT = "70";
 
 
