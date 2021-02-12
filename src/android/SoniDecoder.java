@@ -77,10 +77,6 @@ public class SoniDecoder extends CordovaPlugin implements SoniTalkDecoder.Messag
             public void run() {
                 if (action.equals("decode")) {
                     onDecodeStart();
-                } else if (action.equals("check_microphone_permission")) {
-                    checkMicrophonePermission();
-                } else if (action.equals("check_special_permission")) {
-                    checkSpecialPermission();
                 }
             }
         });
@@ -88,25 +84,6 @@ public class SoniDecoder extends CordovaPlugin implements SoniTalkDecoder.Messag
         return true;
     }
 
-    private boolean checkMicrophonePermission() {
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-            sendData("false");
-            return false;
-        } else {
-            sendData("true");
-            return true;
-        }
-    }
-
-    private boolean checkSpecialPermission() {
-        if (hasPermissions(context, PERMISSION_SONITALK_L0)) {
-            sendData("true");
-            return true;
-        } else {
-            sendData("false");
-            return false;
-        }
-    }
 
     private void onDecodeStart() {
         if (!hasPermissions(context, PERMISSIONS)) {
