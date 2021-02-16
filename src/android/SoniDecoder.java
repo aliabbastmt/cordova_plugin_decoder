@@ -5,7 +5,6 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import androidx.core.app.ActivityCompat;
 import androidx.appcompat.app.AlertDialog;
-import android.support.v4.content.ContextCompat;
 
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.PluginResult;
