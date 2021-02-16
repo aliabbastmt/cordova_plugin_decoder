@@ -3,8 +3,8 @@ package cordova.plugin.decoder;
 import android.os.Build;
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.support.v7.app.AlertDialog;
-import android.support.v4.app.ActivityCompat;
+import androidx.core.app.ActivityCompat;
+import androidx.appcompat.app.AlertDialog;
 import android.support.v4.content.ContextCompat;
 
 import org.apache.cordova.CordovaPlugin;
